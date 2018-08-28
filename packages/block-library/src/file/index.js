@@ -119,9 +119,10 @@ export const settings = {
 				type: 'block',
 				blocks: [ 'core/image' ],
 				transform: ( attributes ) => {
+					const caption = attributes.caption && attributes.caption.join();
 					return createBlock( 'core/file', {
 						href: attributes.url,
-						fileName: attributes.caption && attributes.caption.join(),
+						fileName: caption || attributes.url.split( '/' ).pop(),
 						textLinkHref: attributes.url,
 						id: attributes.id,
 					} );
